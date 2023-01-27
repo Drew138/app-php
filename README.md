@@ -14,7 +14,7 @@ docker-compose exec mysql-container mysql -h localhost -P 3306 -uroot -p
 ```
 
 2. Run the following migration
-```
+```sql
 DROP DATABASE IF EXISTS db;
 CREATE DATABASE db;
 USE db;
