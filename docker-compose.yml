@@ -1,0 +1,29 @@
+version: "3.3"
+services:
+
+  mysql-container:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - php-app-mysql:/var/lib/mysql
+    networks:
+      - php-app
+
+  php-app:
+    build:
+      context: ./
+    networks:
+      - php-app
+    depends_on:
+      - mysql-container
+    ports:
+      - 8000:80
+
+networks:
+  php-app:
+
+volumes:
+  php-app-mysql:
